@@ -238,29 +238,29 @@ export function StudentOnboardingChecklist() {
 
       {/* Checklist Tasks List */}
       {!isCollapsed && (
-        <div className="mt-5 space-y-2.5">
+        <div className="mt-4 space-y-2 w-full min-w-0">
           {checklistItems.map((item) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.id}
                 onClick={() => handleTaskClick(item)}
-                className={`group flex items-center justify-between p-3.5 rounded-2xl border transition-all cursor-pointer ${
+                className={`group flex items-center justify-between p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-all cursor-pointer w-full min-w-0 gap-2 ${
                   item.isComplete
                     ? 'bg-emerald-50/50 dark:bg-emerald-950/20 border-emerald-200/60 dark:border-emerald-900/40 text-stone-700 dark:text-stone-300'
                     : 'bg-stone-50 dark:bg-stone-800/60 hover:bg-stone-100/80 dark:hover:bg-stone-800 border-stone-200/70 dark:border-stone-700/60 text-stone-900 dark:text-white'
                 }`}
               >
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-center gap-2.5 min-w-0 flex-1">
                   <div className="shrink-0">
                     {item.isComplete ? (
-                      <CheckCircle2 className="w-5 h-5 text-[#059669] fill-emerald-100 dark:fill-emerald-950" />
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-[#059669] fill-emerald-100 dark:fill-emerald-950" />
                     ) : (
-                      <Circle className="w-5 h-5 text-stone-300 dark:text-stone-600 group-hover:text-stone-400" />
+                      <Circle className="w-4 h-4 sm:w-5 sm:h-5 text-stone-300 dark:text-stone-600 group-hover:text-stone-400" />
                     )}
                   </div>
 
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <p
                       className={`text-xs font-bold truncate ${
                         item.isComplete ? 'line-through text-stone-500 dark:text-stone-400' : ''
@@ -268,15 +268,15 @@ export function StudentOnboardingChecklist() {
                     >
                       {item.title}
                     </p>
-                    <p className="text-[11px] text-stone-400 dark:text-stone-500 truncate leading-tight">
+                    <p className="text-[10px] sm:text-[11px] text-stone-400 dark:text-stone-500 truncate leading-tight">
                       {item.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 shrink-0 pl-2">
+                <div className="flex items-center shrink-0">
                   <span
-                    className={`text-[11px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 transition-all ${
+                    className={`text-[10px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-1 rounded-full flex items-center gap-1 transition-all shrink-0 ${
                       item.isComplete
                         ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-100/60 dark:bg-emerald-900/40'
                         : 'text-stone-700 dark:text-stone-200 bg-white dark:bg-stone-700 group-hover:bg-black group-hover:text-white shadow-xs'
