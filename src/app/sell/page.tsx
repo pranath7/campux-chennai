@@ -209,10 +209,10 @@ export default function SellPage() {
 
       {/* Verification Gate Banner if Not Verified */}
       {!isVerified && (
-        <div className="warm-card rounded-[24px] p-5 sm:p-6 border-amber-200 bg-amber-50/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-start gap-3">
+        <div className="warm-card rounded-[20px] sm:rounded-[24px] p-4 sm:p-6 border-amber-200 bg-amber-50/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 w-full min-w-0">
+          <div className="flex items-start gap-3 min-w-0 flex-1">
             <ShieldCheck className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-            <div className="text-xs">
+            <div className="text-xs min-w-0">
               <h4 className="font-bold text-stone-900">Student Verification Required to Publish</h4>
               <p className="text-stone-600 mt-0.5">
                 To prevent spam and guarantee academic integrity, verify your institutional email domain or student ID before listing.
@@ -222,7 +222,7 @@ export default function SellPage() {
 
           <button
             onClick={() => setShowVerifyModal(true)}
-            className="bg-[#121316] hover:bg-black text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 transition-all cursor-pointer shadow-xs"
+            className="w-full sm:w-auto bg-[#121316] hover:bg-black text-white px-5 py-2.5 rounded-xl sm:rounded-full text-xs font-bold uppercase tracking-wider shrink-0 transition-all cursor-pointer shadow-xs text-center"
           >
             Verify Student ID
           </button>

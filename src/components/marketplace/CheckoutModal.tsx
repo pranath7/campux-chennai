@@ -133,8 +133,8 @@ export function CheckoutModal({ listing, isOpen = true, onClose, onSuccess }: Ch
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-white rounded-[28px] max-w-lg w-full border border-stone-200 shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-white rounded-[22px] sm:rounded-[28px] max-w-lg w-full max-w-[calc(100vw-24px)] border border-stone-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="p-5 sm:p-6 border-b border-stone-100 flex items-center justify-between bg-[#FAF8F5]">
           <div>

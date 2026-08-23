@@ -46,8 +46,8 @@ export function PreviewModal({ listing, isOpen, onClose, onBuy }: PreviewModalPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
-      <div className="bg-white rounded-[28px] max-w-2xl w-full border border-stone-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+      <div className="bg-white rounded-[22px] sm:rounded-[28px] max-w-2xl w-full max-w-[calc(100vw-24px)] border border-stone-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
         <div className="p-5 border-b border-stone-100 flex items-center justify-between bg-[#FAF8F5]">
           <div className="flex items-center gap-3">

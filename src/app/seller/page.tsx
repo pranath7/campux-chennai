@@ -118,14 +118,14 @@ export default function SellerDashboardPage() {
   const bankDetails = data?.bankDetails;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 text-[#121316]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8 text-[#121316] w-full min-w-0">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div className="space-y-3 sm:space-y-4">
-          <div className="inline-block bg-[#E8E1D5] px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 w-full min-w-0">
+        <div className="space-y-2 sm:space-y-4 min-w-0 flex-1">
+          <div className="inline-block bg-[#E8E1D5] px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
             Creator Dashboard
           </div>
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316] leading-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316] leading-tight break-words">
             Seller Studio & Weekly Settlement
           </h1>
           <p className="text-stone-600 text-xs sm:text-sm max-w-2xl font-normal leading-relaxed">
@@ -135,7 +135,7 @@ export default function SellerDashboardPage() {
 
         <Link
           href="/sell"
-          className="bg-[#121316] hover:bg-black text-white px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shrink-0 shadow-md transition-all cursor-pointer"
+          className="w-full sm:w-auto bg-[#121316] hover:bg-black text-white px-5 py-3 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shrink-0 shadow-md transition-all cursor-pointer text-center"
         >
           <span>List New Resource</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
@@ -149,12 +149,12 @@ export default function SellerDashboardPage() {
       ) : (
         <>
           {/* Key Metric Overview Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="warm-card rounded-[24px] p-5 sm:p-6 space-y-2 border border-stone-200/80 shadow-sm">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-stone-400">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 w-full min-w-0">
+            <div className="warm-card rounded-[20px] sm:rounded-[24px] p-4 sm:p-6 space-y-1.5 sm:space-y-2 border border-stone-200/80 shadow-sm w-full min-w-0">
+              <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider text-stone-400">
                 Gross GMV Sales
               </span>
-              <p className="text-2xl sm:text-3xl font-black text-stone-900">₹{stats?.totalGrossSales || 0}</p>
+              <p className="text-xl sm:text-3xl font-black text-stone-900">₹{stats?.totalGrossSales || 0}</p>
               <p className="text-[10px] text-stone-500 font-medium">{stats?.totalSalesCount || 0} Total Orders</p>
             </div>
 

@@ -111,26 +111,28 @@ function MarketplaceContent() {
       </div>
 
       {/* Main Search & College Quick Filter Bar */}
-      <div className="warm-card rounded-[22px] sm:rounded-[26px] p-3.5 sm:p-6 space-y-3 sm:space-y-4 bg-white border border-stone-200">
-        <form onSubmit={handleSearchSubmit} className="flex items-center bg-stone-50 border border-stone-200 rounded-full pl-3.5 pr-1.5 py-1.5 focus-within:border-stone-900 transition-colors">
-          <Search className="w-4 h-4 text-stone-400 shrink-0" />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search notes, subjects, topics..."
-            className="flex-1 bg-transparent px-2.5 py-1.5 text-xs text-stone-900 placeholder:text-stone-400 focus:outline-none font-medium min-w-0"
-          />
+      <div className="warm-card rounded-[22px] sm:rounded-[26px] p-3.5 sm:p-6 space-y-3 sm:space-y-4 bg-white border border-stone-200 w-full min-w-0">
+        <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-stone-50 border border-stone-200 rounded-2xl sm:rounded-full p-1.5 sm:pl-3.5 focus-within:border-stone-900 transition-colors w-full min-w-0">
+          <div className="flex items-center flex-1 min-w-0 px-2 py-1 sm:py-0">
+            <Search className="w-4 h-4 text-stone-400 shrink-0" />
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search notes, subjects, topics..."
+              className="w-full bg-transparent px-2.5 py-1.5 text-xs text-stone-900 placeholder:text-stone-400 focus:outline-none font-medium min-w-0"
+            />
+          </div>
           <button
             type="submit"
-            className="bg-[#121316] hover:bg-black text-white px-4 sm:px-6 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer transition-all shrink-0"
+            className="w-full sm:w-auto bg-[#121316] hover:bg-black text-white px-5 py-2.5 sm:py-2 rounded-xl sm:rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer transition-all shrink-0 text-center"
           >
-            Search
+            Search Notes
           </button>
         </form>
 
         {/* Quick College Filter Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar w-full min-w-0">
           <span className="text-[10px] font-bold uppercase text-stone-400 shrink-0">Campus:</span>
           <button
             onClick={() => setSelectedCollege('')}
@@ -159,21 +161,21 @@ function MarketplaceContent() {
       </div>
 
       {/* Mobile Filter Toggle Button */}
-      <div className="lg:hidden flex items-center justify-between gap-2 bg-white p-2.5 rounded-2xl border border-stone-200 shadow-xs">
+      <div className="lg:hidden flex items-center justify-between gap-2 bg-white p-2 rounded-2xl border border-stone-200 shadow-xs w-full min-w-0">
         <button
           onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-          className="flex-1 flex items-center justify-center gap-2 py-2 bg-stone-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer min-h-[40px]"
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 bg-stone-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer min-h-[40px] px-3"
         >
-          <Filter className="w-3.5 h-3.5" />
-          <span>{mobileFilterOpen ? 'Close Filters' : 'Filter & Sort Notes'}</span>
+          <Filter className="w-3.5 h-3.5 shrink-0" />
+          <span className="truncate">{mobileFilterOpen ? 'Close' : 'Filter & Sort'}</span>
           {(selectedCategory || selectedYear || selectedCollege) && (
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
           )}
         </button>
         {(selectedCategory || selectedYear || selectedCollege) && (
           <button
             onClick={handleResetFilters}
-            className="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold cursor-pointer min-h-[40px]"
+            className="px-3.5 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold cursor-pointer min-h-[40px] shrink-0"
           >
             Reset
           </button>

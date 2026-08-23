@@ -14,8 +14,8 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-[#FAF8F5] border-t border-stone-200 text-[#121316] text-xs pt-16 pb-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#FAF8F5] border-t border-stone-200 text-[#121316] text-xs pt-12 sm:pt-16 pb-12 w-full min-w-0 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full min-w-0">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-stone-200/80">
           {/* Brand Col */}
           <div className="sm:col-span-2 space-y-4">
