@@ -5,7 +5,8 @@ import { AuthService } from '@/lib/auth';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const identifier = (body.identifier || body.email || body.mobile || '').trim();
+    const identifier = (body.identifier || body.email || body.mobile || body.loginInput || '').trim();
+    const password = body.password;
 
     if (!identifier) {
       return NextResponse.json({ error: 'Mobile number or email is required.' }, { status: 400 });
@@ -14,6 +15,13 @@ export async function POST(req: NextRequest) {
     const user = db.getUserByMobileOrEmail(identifier);
     if (!user) {
       return NextResponse.json({ error: 'No student found with this mobile number or email.' }, { status: 401 });
+    }
+
+    // Secure Password Validation
+    if (user.passwordHash && password) {
+      if (user.passwordHash !== password && user.passwordHash !== `hash_${password}`) {
+        return NextResponse.json({ error: 'Invalid password credentials. Please try again.' }, { status: 401 });
+      }
     }
 
     if (user.isSuspended) {

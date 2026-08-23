@@ -4,13 +4,15 @@ import { AuthService } from '@/lib/auth';
 
 export async function POST(req: NextRequest) {
   try {
-    const { identifier, password } = await req.json();
+    const body = await req.json();
+    const identifier = (body.identifier || body.email || body.mobile || body.loginInput || '').trim();
+    const password = body.password;
 
     if (!identifier) {
       return NextResponse.json({ error: 'Please enter your Admin Email or Mobile number.' }, { status: 400 });
     }
 
-    const clean = identifier.trim().toLowerCase();
+    const clean = identifier.toLowerCase();
     const adminUser = db.users.find(
       (u) =>
         (u.email?.toLowerCase() === clean || u.mobile === clean || u.id.toLowerCase() === clean) &&
@@ -46,6 +48,7 @@ export async function POST(req: NextRequest) {
         mobile: adminUser.mobile,
         role: adminUser.role,
       },
+      token,
       message: 'Admin authentication successful.',
     });
 

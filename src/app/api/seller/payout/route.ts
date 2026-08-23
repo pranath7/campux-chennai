@@ -13,9 +13,20 @@ export async function GET(req: NextRequest) {
     }
 
     const profile = db.getStudentProfile ? db.getStudentProfile(session.userId) : db.studentProfiles.find(p => p.userId === session.userId);
+    const payout = profile?.payoutDetails;
+
+    // Mask sensitive banking numbers on response
+    let safePayout = null;
+    if (payout) {
+      safePayout = {
+        ...payout,
+        accountNumber: undefined, // Never expose raw bank account over GET API
+      };
+    }
+
     return NextResponse.json({
       success: true,
-      payoutDetails: profile?.payoutDetails || null,
+      payoutDetails: safePayout,
     });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : 'Server error';
@@ -93,7 +104,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: payoutMethod === 'upi' ? 'UPI Payout method linked successfully!' : 'Bank Account linked successfully!',
-      payoutDetails: payoutData,
+      payoutDetails: {
+        ...payoutData,
+        accountNumber: undefined, // Return masked representation
+      },
     });
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : 'Server error';
