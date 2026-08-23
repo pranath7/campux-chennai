@@ -35,7 +35,8 @@ function MarketplaceContent() {
   const [sortBy, setSortBy] = useState(searchParams.get('sort') || 'recommended');
   const [maxPrice, setMaxPrice] = useState('500');
 
-  // Modals
+  // Modals & Mobile Filter Drawer
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [selectedPreview, setSelectedPreview] = useState<Listing | null>(null);
   const [selectedBuy, setSelectedBuy] = useState<Listing | null>(null);
 
@@ -160,11 +161,33 @@ function MarketplaceContent() {
         </div>
       </div>
 
+      {/* Mobile Filter Toggle Button */}
+      <div className="lg:hidden flex items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs">
+        <button
+          onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+          className="flex-1 flex items-center justify-center gap-2 py-2 bg-stone-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer"
+        >
+          <Filter className="w-4 h-4" />
+          <span>{mobileFilterOpen ? 'Close Filters' : 'Filter & Sort Notes'}</span>
+          {(selectedCategory || selectedYear || selectedCollege) && (
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          )}
+        </button>
+        {(selectedCategory || selectedYear || selectedCollege) && (
+          <button
+            onClick={handleResetFilters}
+            className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold cursor-pointer"
+          >
+            Reset
+          </button>
+        )}
+      </div>
+
       {/* Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Left Filters Sidebar */}
-        <div className="lg:col-span-1 space-y-6">
-          <div className="warm-card rounded-[24px] p-6 space-y-6">
+        <div className={`lg:col-span-1 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
+          <div className="warm-card rounded-[24px] p-6 space-y-6 bg-white border border-stone-200">
             <div className="flex items-center justify-between pb-3 border-b border-stone-100">
               <span className="text-xs font-bold uppercase tracking-wider text-stone-900 flex items-center gap-1.5">
                 <Filter className="w-3.5 h-3.5 text-stone-600" /> Filters
