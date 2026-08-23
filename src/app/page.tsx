@@ -69,45 +69,45 @@ export default function PublicLandingPage() {
   ];
 
   return (
-    <div className="space-y-24 pb-20 text-[#121316]">
+    <div className="space-y-12 sm:space-y-24 pb-16 sm:pb-20 text-[#121316] w-full max-w-full overflow-hidden">
       {/* 1. HERO SECTION */}
-      <section className="pt-12 sm:pt-20 text-center max-w-5xl mx-auto px-4 space-y-8">
+      <section className="pt-8 sm:pt-20 text-center max-w-5xl mx-auto px-3 sm:px-4 space-y-6 sm:space-y-8">
         {/* Institutional Trust Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-stone-300 bg-stone-100/80 text-[11px] font-bold uppercase tracking-widest text-stone-700">
-          <ShieldCheck className="w-3.5 h-3.5 text-[#059669]" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-stone-300 bg-stone-100/80 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-stone-700">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#059669] shrink-0" />
           <span>Chennai Verified Student Network</span>
         </div>
 
         {/* Large Editorial Headline */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-stone-900 leading-[1.08]">
+        <h1 className="text-3xl sm:text-6xl md:text-7xl font-black tracking-tight text-stone-900 leading-[1.1] break-words">
           Your College. Your Community.{' '}
           <span className="block text-stone-500 font-medium">Your Academic Marketplace.</span>
         </h1>
 
         {/* Subheading */}
-        <p className="text-sm sm:text-base md:text-lg text-stone-600 max-w-2xl mx-auto font-medium leading-relaxed">
+        <p className="text-xs sm:text-base md:text-lg text-stone-600 max-w-2xl mx-auto font-medium leading-relaxed">
           Buy, sell and discover academic resources from verified students across Chennai premier institutions.
         </p>
 
         {/* Primary CTA (Buy Notes) & Secondary (Sell Notes) */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
           {user ? (
             <Link
               href="/app"
-              className="w-full sm:w-auto bg-[#059669] hover:bg-[#047857] text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full sm:w-auto bg-[#059669] hover:bg-[#047857] text-white px-8 py-3.5 sm:py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer min-h-[44px]"
             >
               <span>Go to Student Hub</span>
-              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform">
+              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform">
                 <ArrowUpRight className="w-3.5 h-3.5 text-white" />
               </div>
             </Link>
           ) : (
             <Link
               href="/login?redirect=/app"
-              className="w-full sm:w-auto bg-[#059669] hover:bg-[#047857] text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer"
+              className="w-full sm:w-auto bg-[#059669] hover:bg-[#047857] text-white px-8 py-3.5 sm:py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer min-h-[44px]"
             >
               <span>Buy Notes</span>
-              <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform">
+              <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center group-hover:rotate-45 transition-transform">
                 <ArrowUpRight className="w-3.5 h-3.5 text-white" />
               </div>
             </Link>
@@ -115,7 +115,7 @@ export default function PublicLandingPage() {
 
           <Link
             href={user ? '/sell' : '/login?redirect=/sell'}
-            className="w-full sm:w-auto bg-white hover:bg-stone-50 border border-stone-300 text-stone-700 px-6 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer"
+            className="w-full sm:w-auto bg-white hover:bg-stone-50 border border-stone-300 text-stone-700 px-6 py-3.5 sm:py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all cursor-pointer min-h-[44px] flex items-center justify-center"
           >
             Sell Notes
           </Link>
@@ -123,22 +123,22 @@ export default function PublicLandingPage() {
       </section>
 
       {/* 2. CHENNAI CAMPUS TICKER */}
-      <section className="border-y border-stone-200 bg-white/60 py-6">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap items-center justify-between gap-6 text-xs text-stone-500 font-bold uppercase tracking-wider">
-          <div className="flex items-center gap-2 text-stone-900">
+      <section className="border-y border-stone-200 bg-white/60 py-4 sm:py-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 flex items-center justify-between gap-4 text-xs text-stone-500 font-bold uppercase tracking-wider overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-2 text-stone-900 shrink-0">
             <Building className="w-4 h-4 text-[#059669]" />
-            <span>PARTNER CAMPUSES</span>
+            <span className="text-[10px] sm:text-xs">PARTNER CAMPUSES</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6 sm:gap-10">
+          <div className="flex items-center gap-4 sm:gap-10 shrink-0 text-[11px] sm:text-xs">
             {colleges.map((c) => (
-              <span key={c.short} className="hover:text-black transition-colors">
+              <span key={c.short} className="hover:text-black transition-colors whitespace-nowrap">
                 {c.name}
               </span>
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-1 text-stone-400">
+          <div className="hidden lg:flex items-center gap-1 text-stone-400 shrink-0">
             <span>CHENNAI REGION</span>
           </div>
         </div>
