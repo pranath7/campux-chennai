@@ -7,6 +7,8 @@ import { Footer } from '@/components/layout/Footer';
 import { MobileGestures } from '@/components/mobile/MobileGestures';
 import { BRAND_CONFIG } from '@/lib/brandConfig';
 
+export const dynamic = 'force-dynamic';
+
 const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
