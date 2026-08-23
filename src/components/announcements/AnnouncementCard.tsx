@@ -22,7 +22,7 @@ export function AnnouncementCard({ announcement }: AnnouncementCardProps) {
   const badgeClass = categoryColors[announcement.category] || 'bg-stone-100 text-stone-800 border-stone-200';
 
   return (
-    <div className="warm-card rounded-[28px] overflow-hidden flex flex-col justify-between transition-all duration-300 relative group text-left border border-stone-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 bg-white">
+    <div className="warm-card rounded-[22px] sm:rounded-[28px] overflow-hidden flex flex-col justify-between transition-all duration-300 relative group text-left border border-stone-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 bg-white w-full max-w-full min-w-0">
       {/* Banner image */}
       {announcement.imageUrl ? (
         <div className="aspect-[16/8] w-full overflow-hidden relative bg-stone-100">

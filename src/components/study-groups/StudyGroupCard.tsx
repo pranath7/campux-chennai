@@ -58,7 +58,7 @@ export function StudyGroupCard({ studyGroup, onJoinSuccess }: StudyGroupCardProp
       : 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=80';
 
   return (
-    <div className="warm-card rounded-[28px] overflow-hidden flex flex-col justify-between transition-all duration-300 relative group text-left border border-stone-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1">
+    <div className="warm-card rounded-[22px] sm:rounded-[28px] overflow-hidden flex flex-col justify-between transition-all duration-300 relative group text-left border border-stone-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1 w-full max-w-full min-w-0">
       <div>
         {/* Visual Thumbnail Banner */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-100">
