@@ -18,24 +18,25 @@
 
   *, *::before, *::after {
     box-sizing: border-box;
-    margin: 0;
     min-width: 0;
   }
 
   html {
-    overflow-x: clip !important;
+    overflow-x: hidden !important;
     max-width: 100vw !important;
     width: 100% !important;
+    touch-action: pan-y pinch-zoom;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    overflow-x: clip !important;
+    overflow-x: hidden !important;
     max-width: 100vw !important;
     width: 100% !important;
     position: relative;
     background-color: #FAF8F5;
     color: #121316;
+    touch-action: pan-y pinch-zoom;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,7 +44,7 @@
   }
 
   main {
-    overflow-x: clip !important;
+    overflow-x: hidden !important;
     max-width: 100vw !important;
     width: 100% !important;
   }

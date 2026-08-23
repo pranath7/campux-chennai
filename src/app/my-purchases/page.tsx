@@ -70,7 +70,7 @@ export default function MyPurchasesPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8 text-[#121316]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8 text-[#121316] w-full min-w-0">
       {/* Header */}
       <div className="space-y-2 sm:space-y-4">
         <div className="inline-block bg-[#E8E1D5] px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
@@ -85,20 +85,20 @@ export default function MyPurchasesPage() {
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-stone-200 text-xs font-bold">
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-stone-200 text-xs font-bold no-scrollbar w-full min-w-0">
         {[
-          { id: 'all', label: `All Resources (${purchases.length})` },
+          { id: 'all', label: `All (${purchases.length})` },
           { id: 'verified', label: `Verified (${purchases.filter((p) => p.paymentStatus === 'verified' || p.paymentStatus === 'successful').length})` },
-          { id: 'waiting', label: `Waiting for Verification (${purchases.filter((p) => p.paymentStatus === 'submitted' || p.paymentStatus === 'pending').length})` },
+          { id: 'waiting', label: `Waiting (${purchases.filter((p) => p.paymentStatus === 'submitted' || p.paymentStatus === 'pending').length})` },
           { id: 'rejected', label: `Rejected (${purchases.filter((p) => p.paymentStatus === 'rejected').length})` },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`px-4 py-2 rounded-full whitespace-nowrap transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-full whitespace-nowrap text-[11px] sm:text-xs transition-all cursor-pointer shrink-0 ${
               activeTab === tab.id
-                ? 'bg-[#121316] text-white shadow-sm'
-                : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
+                ? 'bg-[#121316] text-white shadow-sm font-black'
+                : 'bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold'
             }`}
           >
             {tab.label}
@@ -107,32 +107,32 @@ export default function MyPurchasesPage() {
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full min-w-0">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="warm-card rounded-[26px] p-6 h-64 animate-pulse bg-stone-100/70" />
+            <div key={i} className="warm-card rounded-[22px] sm:rounded-[26px] p-6 h-64 animate-pulse bg-stone-100/70" />
           ))}
         </div>
       ) : filteredPurchases.length === 0 ? (
-        <div className="warm-card rounded-[28px] p-10 sm:p-14 text-center space-y-4 border border-stone-200/80">
-          <div className="w-14 h-14 rounded-full bg-stone-100 flex items-center justify-center mx-auto text-stone-400">
-            <ShoppingBag className="w-6 h-6" />
+        <div className="warm-card rounded-[22px] sm:rounded-[28px] p-6 sm:p-14 text-center space-y-4 border border-stone-200/80 w-full min-w-0">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-stone-100 flex items-center justify-center mx-auto text-stone-400">
+            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
           </div>
-          <h3 className="font-bold text-lg text-stone-900">No resources found in this category</h3>
-          <p className="text-xs text-stone-500 max-w-sm mx-auto leading-relaxed">
+          <h3 className="font-bold text-base sm:text-lg text-stone-900 break-words">No resources found</h3>
+          <p className="text-[11px] sm:text-xs text-stone-500 max-w-sm mx-auto leading-relaxed">
             {activeTab === 'all'
               ? "You haven't purchased any notes yet. Browse peer guides and revision papers curated for your college."
               : `You have no resources matching "${activeTab}".`}
           </p>
           <Link
             href="/marketplace"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#121316] hover:bg-black text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#121316] hover:bg-black text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all cursor-pointer"
           >
             <span>Explore Marketplace</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full min-w-0">
           {filteredPurchases.map((p) => {
             const isVerified = p.paymentStatus === 'verified' || p.paymentStatus === 'successful';
             const isSubmitted = p.paymentStatus === 'submitted' || p.paymentStatus === 'pending';
