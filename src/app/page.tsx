@@ -123,23 +123,19 @@ export default function PublicLandingPage() {
       </section>
 
       {/* 2. CHENNAI CAMPUS TICKER */}
-      <section className="border-y border-stone-200 bg-white/60 py-4 sm:py-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 flex items-center justify-between gap-4 text-xs text-stone-500 font-bold uppercase tracking-wider overflow-x-auto no-scrollbar">
-          <div className="flex items-center gap-2 text-stone-900 shrink-0">
-            <Building className="w-4 h-4 text-[#059669]" />
-            <span className="text-[10px] sm:text-xs">PARTNER CAMPUSES</span>
+      <section className="border-y border-stone-200 bg-white/60 py-3 sm:py-5 overflow-hidden w-full max-w-full min-w-0">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 flex items-center gap-3 w-full min-w-0 overflow-hidden">
+          <div className="flex items-center gap-1.5 text-stone-900 shrink-0 pr-2 border-r border-stone-200">
+            <Building className="w-3.5 h-3.5 text-[#059669]" />
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Campuses</span>
           </div>
 
-          <div className="flex items-center gap-4 sm:gap-10 shrink-0 text-[11px] sm:text-xs">
+          <div className="flex items-center gap-2.5 sm:gap-8 overflow-x-auto no-scrollbar flex-1 min-w-0 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-600">
             {colleges.map((c) => (
-              <span key={c.short} className="hover:text-black transition-colors whitespace-nowrap">
-                {c.name}
+              <span key={c.short} className="hover:text-black transition-colors whitespace-nowrap shrink-0 bg-stone-100 sm:bg-transparent px-2.5 py-0.5 sm:p-0 rounded-full">
+                {c.short || c.name}
               </span>
             ))}
-          </div>
-
-          <div className="hidden lg:flex items-center gap-1 text-stone-400 shrink-0">
-            <span>CHENNAI REGION</span>
           </div>
         </div>
       </section>

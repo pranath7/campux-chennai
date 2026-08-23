@@ -37,11 +37,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={jakarta.variable}>
-      <body className="bg-[#FAF8F5] text-[#121316] min-h-screen flex flex-col antialiased selection:bg-[#059669] selection:text-white font-sans touch-manipulation overflow-x-hidden w-full max-w-[100vw]">
+      <body className="bg-[#FAF8F5] text-[#121316] min-h-screen flex flex-col antialiased selection:bg-[#059669] selection:text-white font-sans touch-manipulation overflow-x-hidden w-full max-w-full">
         <AuthProvider>
           <MobileGestures>
             <Navbar />
-            <main className="flex-1 flex flex-col pb-28 md:pb-8 w-full max-w-[100vw] overflow-x-clip min-w-0">
+            <main className="flex-1 flex flex-col pb-28 md:pb-8 w-full max-w-full overflow-x-hidden min-w-0">
               {children}
             </main>
             <Footer />

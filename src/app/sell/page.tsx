@@ -259,7 +259,7 @@ export default function SellPage() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="warm-card rounded-[28px] p-6 sm:p-8 space-y-7 text-xs text-stone-800 border border-stone-200/80 shadow-sm">
+        <form onSubmit={handleSubmit} className="warm-card rounded-[20px] sm:rounded-[28px] p-4 sm:p-8 space-y-6 sm:space-y-7 text-xs text-stone-800 border border-stone-200/80 shadow-sm w-full max-w-full min-w-0">
           {/* 1. Academic Hierarchy (College is STRICTLY LOCKED) */}
           <div className="space-y-4">
             <div className="flex items-center justify-between border-b border-stone-100 pb-3">
