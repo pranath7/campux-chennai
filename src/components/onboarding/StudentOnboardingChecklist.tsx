@@ -172,10 +172,10 @@ export function StudentOnboardingChecklist() {
   }
 
   return (
-    <div className="warm-card rounded-[22px] sm:rounded-[28px] p-4 sm:p-6 border border-stone-200/90 shadow-sm bg-white dark:bg-stone-900 transition-all mb-6">
+    <div className="warm-card rounded-[22px] sm:rounded-[28px] p-4 sm:p-6 border border-stone-200/90 shadow-sm bg-white dark:bg-stone-900 transition-all mb-6 w-full max-w-full min-w-0 overflow-hidden">
       {/* Header with Progress Ring & Task Count */}
-      <div className="flex items-start justify-between gap-2.5 sm:gap-4">
-        <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+      <div className="flex items-start justify-between gap-2.5 sm:gap-4 w-full min-w-0">
+        <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
           <div className="relative flex items-center justify-center shrink-0">
             {/* Circular Progress Indicator */}
             <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-black text-xs">
@@ -183,7 +183,7 @@ export function StudentOnboardingChecklist() {
             </div>
           </div>
 
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800">
                 {completedCount} of {totalTasks} Completed

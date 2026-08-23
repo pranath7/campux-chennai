@@ -208,7 +208,7 @@ export default function StudentAppHome() {
 
       {/* 2. PERSONALIZED: RECOMMENDED FOR YOU (STRICTLY OWN COLLEGE + COURSE) */}
       {collegeNotes.length > 0 && (
-        <section className="space-y-6">
+        <section className="space-y-4 sm:space-y-6 w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>
               <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#059669]">
@@ -272,7 +272,7 @@ export default function StudentAppHome() {
 
       {/* 4. PERSONALIZED: REVISION & CHAPTER NOTES */}
       {sessionNotes.length > 0 && (
-        <section className="space-y-6">
+        <section className="space-y-4 sm:space-y-6 w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>
               <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#059669]">
@@ -334,7 +334,7 @@ export default function StudentAppHome() {
 
       {/* 6. DISCOVERY: EXPLORE RESOURCES FROM OTHER COLLEGES */}
       {otherCollegeListings.length > 0 && (
-        <section className="space-y-6">
+        <section className="space-y-4 sm:space-y-6 w-full min-w-0 overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
             <div>
               <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-indigo-600">
