@@ -90,8 +90,8 @@ export async function POST(req: NextRequest) {
     const college = profile?.collegeId ? db.getCollegeById(profile.collegeId) : undefined;
 
     // Load user purchases and seller stats
-    const purchases = db.getPurchasesByBuyerId ? db.getPurchasesByBuyerId(user.id) : db.purchases.filter(p => p.buyerId === user.id);
-    const mySales = db.listings.filter(l => l.sellerId === user.id);
+    const purchases = db.purchases.filter((p) => p.buyerId === user.id);
+    const mySales = db.listings.filter((l) => l.sellerId === user.id);
 
     const response = NextResponse.json({
       success: true,

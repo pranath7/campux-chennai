@@ -9,10 +9,10 @@ import {
   Home,
   ShoppingBag,
   PlusCircle,
-  Users,
+  FolderDown,
   User,
-  BookOpen,
   Sparkles,
+  Search,
 } from 'lucide-react';
 
 export function BottomNav() {
@@ -28,16 +28,16 @@ export function BottomNav() {
     ? [
         {
           id: 'home',
-          label: 'Hub',
+          label: 'Home',
           href: '/app',
           icon: Home,
           isActive: pathname === '/app',
         },
         {
-          id: 'marketplace',
-          label: 'Market',
+          id: 'explore',
+          label: 'Explore',
           href: '/marketplace',
-          icon: ShoppingBag,
+          icon: Search,
           isActive: pathname === '/marketplace' || pathname?.startsWith('/resources'),
         },
         {
@@ -49,18 +49,18 @@ export function BottomNav() {
           isHighlight: true,
         },
         {
-          id: 'groups',
-          label: 'Groups',
-          href: '/study-groups',
-          icon: Users,
-          isActive: pathname === '/study-groups',
+          id: 'purchases',
+          label: 'Purchases',
+          href: '/my-purchases',
+          icon: FolderDown,
+          isActive: pathname === '/my-purchases',
         },
         {
           id: 'profile',
           label: 'Profile',
           href: '/profile',
           icon: User,
-          isActive: pathname === '/profile' || pathname === '/my-purchases' || pathname === '/seller',
+          isActive: pathname === '/profile' || pathname === '/seller',
         },
       ]
     : [
@@ -72,22 +72,29 @@ export function BottomNav() {
           isActive: pathname === '/',
         },
         {
-          id: 'marketplace',
+          id: 'explore',
           label: 'Explore',
           href: '/marketplace',
-          icon: ShoppingBag,
+          icon: Search,
           isActive: pathname === '/marketplace' || pathname?.startsWith('/resources'),
         },
         {
           id: 'roadmap',
-          label: 'AI & Roadmap',
+          label: 'AI Roadmap',
           href: '/coming-soon',
           icon: Sparkles,
           isActive: pathname === '/coming-soon',
         },
         {
+          id: 'sell',
+          label: 'Sell',
+          href: '/login?redirect=/sell',
+          icon: PlusCircle,
+          isActive: pathname === '/sell',
+        },
+        {
           id: 'login',
-          label: 'Sign In',
+          label: 'Login',
           href: '/login',
           icon: User,
           isActive: pathname === '/login',
@@ -97,30 +104,30 @@ export function BottomNav() {
 
   return (
     <nav
-      aria-label="Mobile Navigation Bar"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF8F5]/95 dark:bg-stone-900/95 backdrop-blur-md border-t border-stone-200/90 dark:border-stone-800 px-3 pt-1.5 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-2xl transition-all"
+      aria-label="Mobile Bottom Navigation"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF8F5]/98 dark:bg-stone-900/98 backdrop-blur-lg border-t border-stone-200/90 dark:border-stone-800 px-2 pt-1 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl transition-all"
     >
-      <div className="flex items-center justify-around max-w-md mx-auto">
+      <div className="flex items-center justify-around max-w-lg mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isHighlight = item.isHighlight;
 
-          if (isHighlight) {
+          if (isHighlight && user) {
             return (
               <Link
                 key={item.id}
                 href={item.href}
                 onClick={() => triggerHaptic('medium')}
-                className="flex flex-col items-center justify-center -mt-4 group"
+                className="flex flex-col items-center justify-center -mt-5 group min-w-[56px] min-h-[44px]"
               >
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-105 active:scale-95 ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-xl transition-all active:scale-90 ${
                     item.isActive
-                      ? 'bg-black ring-4 ring-emerald-400/30'
+                      ? 'bg-black ring-4 ring-emerald-400/40'
                       : 'bg-[#059669] hover:bg-[#047857]'
                   }`}
                 >
-                  <Icon className="w-6 h-6" />
+                  <Icon className="w-6 h-6 stroke-[2.5]" />
                 </div>
                 <span className="text-[10px] font-black uppercase tracking-wider text-stone-800 dark:text-stone-200 mt-1">
                   {item.label}
@@ -134,7 +141,7 @@ export function BottomNav() {
               key={item.id}
               href={item.href}
               onClick={() => triggerHaptic('selection')}
-              className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all min-w-[54px] ${
+              className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all min-w-[54px] min-h-[44px] ${
                 item.isActive
                   ? 'text-[#059669] dark:text-emerald-400 font-bold scale-105'
                   : 'text-stone-500 dark:text-stone-400 font-medium hover:text-stone-900'
@@ -147,7 +154,9 @@ export function BottomNav() {
               >
                 <Icon className="w-5 h-5" />
               </div>
-              <span className="text-[10px] tracking-wide mt-0.5">{item.label}</span>
+              <span className="text-[10px] tracking-wide mt-0.5 font-semibold leading-tight">
+                {item.label}
+              </span>
             </Link>
           );
         })}
