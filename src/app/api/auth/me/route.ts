@@ -18,6 +18,8 @@ export async function GET(req: NextRequest) {
 
     const profile = db.getStudentProfile(user.id);
     const college = profile?.collegeId ? db.getCollegeById(profile.collegeId) : undefined;
+    const purchases = db.getPurchasesByBuyerId ? db.getPurchasesByBuyerId(user.id) : db.purchases.filter(p => p.buyerId === user.id);
+    const mySales = db.listings.filter(l => l.sellerId === user.id);
 
     return NextResponse.json({
       authenticated: true,
@@ -26,10 +28,15 @@ export async function GET(req: NextRequest) {
         fullName: user.fullName,
         email: user.email,
         mobile: user.mobile,
+        studentCode: user.studentCode || profile?.studentCode,
         role: user.role,
         avatarUrl: user.avatarUrl,
         profile,
         college,
+        stats: {
+          purchasesCount: purchases.length,
+          salesCount: mySales.length,
+        },
       },
     });
   } catch (err: unknown) {

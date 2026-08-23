@@ -7,7 +7,7 @@ import { supabaseAdmin } from '@/lib/supabase/admin';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { fullName, mobile, email, collegeId, courseId, year, section, semester } = body;
+    const { fullName, mobile, email, password, collegeId, courseId, year, section, semester } = body;
 
     if (!fullName || !mobile || !collegeId || !courseId) {
       return NextResponse.json(
@@ -27,21 +27,28 @@ export async function POST(req: NextRequest) {
 
     const college = db.getCollegeById(collegeId) || db.colleges[0];
     const userEmail = email ? email.trim().toLowerCase() : `${cleanMobile}@campux.local`;
+    const userPassword = password ? password.trim() : 'student123';
 
-    const newUserId = `user_${Date.now()}`;
+    // Unique Permanent Student Code (e.g. CMPX-DGVC-8942)
+    const collegeTag = (college.shortName || 'CHN').replace(/[^a-zA-Z]/g, '').toUpperCase();
+    const studentCode = `CMPX-${collegeTag}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    const newUserId = `user_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`;
     const newUser: User = {
       id: newUserId,
       fullName: fullName.trim(),
       mobile: cleanMobile,
       email: userEmail,
       role: 'student',
-      passwordHash: 'student123',
+      studentCode,
+      passwordHash: userPassword,
       createdAt: new Date().toISOString(),
       avatarUrl: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(fullName)}`,
     };
 
     const newProfile: StudentProfile = {
       userId: newUserId,
+      studentCode,
       collegeId: college.id,
       collegeName: college.name,
       courseId: courseId || 'dgvc_bcom_gen',
@@ -93,7 +100,7 @@ export async function POST(req: NextRequest) {
       id: `notif_${Date.now()}`,
       userId: newUserId,
       title: '👋 Welcome to Campux Chennai',
-      message: `Welcome ${fullName}! You are registered under ${college.name} (Year ${newProfile.year}, Sec ${newProfile.section}).`,
+      message: `Welcome ${fullName}! Your unique Student ID is ${studentCode}. Enrolled under ${college.name} (Year ${newProfile.year}, Sec ${newProfile.section}).`,
       type: 'system',
       isRead: false,
       createdAt: new Date().toISOString(),
@@ -108,12 +115,14 @@ export async function POST(req: NextRequest) {
         fullName: newUser.fullName,
         email: newUser.email,
         mobile: newUser.mobile,
+        studentCode,
         role: newUser.role,
         avatarUrl: newUser.avatarUrl,
         profile: newProfile,
         college,
       },
       token,
+      message: `Registration successful! Your Student Code is ${studentCode}`,
     });
 
     response.cookies.set(AuthService.getCookieName(), token, {

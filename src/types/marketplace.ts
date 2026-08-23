@@ -96,6 +96,7 @@ export interface User {
   mobile: string;
   role: UserRole;
   passwordHash?: string;
+  studentCode?: string;
   createdAt: string;
   isSuspended?: boolean;
   isBanned?: boolean;
@@ -105,6 +106,7 @@ export interface User {
 
 export interface StudentProfile {
   userId: string;
+  studentCode?: string;
   collegeId: string;
   collegeName?: string;
   courseId: string;
