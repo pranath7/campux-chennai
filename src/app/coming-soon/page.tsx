@@ -116,19 +116,19 @@ export default function ComingSoonPage() {
   ];
 
   return (
-    <div className="min-h-screen text-[#121316] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-16">
+    <div className="min-h-screen text-[#121316] py-8 sm:py-16 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-10 sm:space-y-16 w-full min-w-0">
       {/* 1. HERO & PRODUCT DIRECTION */}
-      <div className="text-center space-y-6 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-stone-900 text-emerald-400 text-xs font-bold px-4 py-1.5 rounded-full border border-stone-700 shadow-md">
-          <Sparkles className="w-4 h-4 animate-pulse" />
+      <div className="text-center space-y-4 sm:space-y-6 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 bg-stone-900 text-emerald-400 text-[10px] sm:text-xs font-bold px-3.5 py-1.5 rounded-full border border-stone-700 shadow-md">
+          <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           <span>Product Roadmap & Next Generation Features</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-tight">
+        <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-stone-900 leading-tight break-words">
           The Future of Student Learning is Coming to Chennai.
         </h1>
 
-        <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-xs sm:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto">
           We are expanding Campux beyond note trading. Experience AI-powered active recall, instant syllabus synthesis, and unlimited academic memberships designed specifically for your semester curriculum.
         </p>
 

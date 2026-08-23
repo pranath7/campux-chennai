@@ -92,7 +92,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-4 py-16 space-y-8 text-[#121316]">
+    <div className="max-w-md mx-auto px-3 sm:px-4 py-8 sm:py-16 space-y-6 sm:space-y-8 text-[#121316] w-full min-w-0">
       {/* Brand Header */}
       <div className="text-center space-y-3">
         <div className="w-12 h-12 rounded-full border border-stone-900 flex items-center justify-center text-stone-900 mx-auto bg-stone-50">
