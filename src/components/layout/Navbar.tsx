@@ -76,8 +76,8 @@ export function Navbar() {
 
             {/* Active College Badge (Logged In - Desktop only) */}
             {user?.profile?.collegeId && (
-              <div className="hidden xl:flex items-center gap-1.5 bg-stone-100/80 border border-stone-200 px-3 py-1 rounded-full text-xs text-stone-600 font-medium">
-                <Building className="w-3.5 h-3.5 text-stone-500" />
+              <div className="hidden 2xl:flex items-center gap-1.5 bg-stone-100/80 border border-stone-200 px-3 py-1 rounded-full text-xs text-stone-600 font-medium whitespace-nowrap">
+                <Building className="w-3.5 h-3.5 text-stone-500 shrink-0" />
                 <span className="text-stone-900 font-semibold">{user.college?.shortName || user.college?.name || 'DG Vaishnav'}</span>
                 {user.profile.section && (
                   <span className="text-[10px] text-stone-400 font-bold">Sec {user.profile.section}</span>
@@ -87,16 +87,16 @@ export function Navbar() {
           </div>
 
           {/* Navigation Links (Desktop) */}
-          <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-5">
             {(user ? appLinks : publicLinks).map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-xs font-bold uppercase tracking-widest transition-colors py-2 ${
+                  className={`text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-colors py-1 px-2.5 rounded-lg ${
                     isActive
-                      ? 'text-black border-b-2 border-black'
+                      ? 'text-black font-extrabold border-b-2 border-black'
                       : 'text-stone-600 hover:text-black'
                   }`}
                 >

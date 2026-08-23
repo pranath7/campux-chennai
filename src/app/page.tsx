@@ -214,15 +214,15 @@ export default function PublicLandingPage() {
       </section>
 
       {/* COMING SOON: AI FLASHCARDS, SUMMARIES & MEMBERSHIP */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white rounded-[32px] p-6 sm:p-10 lg:p-12 border border-stone-700 shadow-2xl relative overflow-hidden space-y-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div className="space-y-3 max-w-xl">
-              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 w-full min-w-0">
+        <div className="bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white rounded-[24px] sm:rounded-[32px] p-5 sm:p-10 lg:p-12 border border-stone-700 shadow-2xl relative overflow-hidden space-y-6 sm:space-y-8 w-full min-w-0">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 w-full min-w-0">
+            <div className="space-y-2.5 sm:space-y-3 max-w-xl min-w-0 flex-1">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider">
                 <Sparkles className="w-3.5 h-3.5 animate-pulse" />
                 <span>Next-Gen AI Roadmap</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight break-words">
                 AI Flashcards, Cheat Sheets & Monthly Membership.
               </h2>
               <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
@@ -232,36 +232,36 @@ export default function PublicLandingPage() {
 
             <Link
               href="/coming-soon"
-              className="bg-[#059669] hover:bg-[#047857] text-white px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 self-start md:self-auto cursor-pointer"
+              className="w-full sm:w-auto bg-[#059669] hover:bg-[#047857] text-white px-6 sm:px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-md flex items-center justify-center gap-2 shrink-0 cursor-pointer text-center"
             >
               <span>Explore Roadmap & Join VIP Beta</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-stone-700/60">
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4.5 space-y-2 backdrop-blur-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-stone-700/60 w-full min-w-0">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 space-y-2 backdrop-blur-xs w-full min-w-0">
               <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
                 <Zap className="w-4 h-4" />
               </div>
               <h4 className="font-bold text-sm text-stone-100">AI Flashcard Maker</h4>
-              <p className="text-xs text-stone-400">Transform any PDF notes into active-recall flashcard decks.</p>
+              <p className="text-xs text-stone-400 leading-relaxed">Transform any PDF notes into active-recall flashcard decks.</p>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4.5 space-y-2 backdrop-blur-xs">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 space-y-2 backdrop-blur-xs w-full min-w-0">
               <div className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
                 <Sparkles className="w-4 h-4" />
               </div>
               <h4 className="font-bold text-sm text-stone-100">AI Instant Summaries</h4>
-              <p className="text-xs text-stone-400">1-page exam cheat sheets & key formula extractions.</p>
+              <p className="text-xs text-stone-400 leading-relaxed">1-page exam cheat sheets & key formula extractions.</p>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-4.5 space-y-2 backdrop-blur-xs">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 space-y-2 backdrop-blur-xs w-full min-w-0">
               <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
                 <Crown className="w-4 h-4" />
               </div>
               <h4 className="font-bold text-sm text-stone-100">Monthly Pass</h4>
-              <p className="text-xs text-stone-400">Unlimited downloads and AI tools for a single flat fee.</p>
+              <p className="text-xs text-stone-400 leading-relaxed">Unlimited downloads and AI tools for a single flat fee.</p>
             </div>
           </div>
         </div>
