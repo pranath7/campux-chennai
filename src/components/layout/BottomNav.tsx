@@ -8,7 +8,7 @@ import { triggerHaptic } from '@/lib/haptics';
 import {
   Home,
   ShoppingBag,
-  PlusCircle,
+  Plus,
   FolderDown,
   User,
   Sparkles,
@@ -44,7 +44,7 @@ export function BottomNav() {
           id: 'sell',
           label: 'Sell',
           href: '/sell',
-          icon: PlusCircle,
+          icon: Plus,
           isActive: pathname === '/sell',
           isHighlight: true,
         },
@@ -89,7 +89,7 @@ export function BottomNav() {
           id: 'sell',
           label: 'Sell',
           href: '/login?redirect=/sell',
-          icon: PlusCircle,
+          icon: Plus,
           isActive: pathname === '/sell',
         },
         {
@@ -105,9 +105,9 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Mobile Bottom Navigation"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#FAF8F5]/98 dark:bg-stone-900/98 backdrop-blur-lg border-t border-stone-200/90 dark:border-stone-800 px-2 pt-1 pb-[max(0.6rem,env(safe-area-inset-bottom))] shadow-2xl transition-all"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-stone-200/90 px-1 pt-1.5 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-4px_20px_rgba(0,0,0,0.06)]"
     >
-      <div className="flex items-center justify-around max-w-lg mx-auto">
+      <div className="flex items-center justify-around max-w-md mx-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isHighlight = item.isHighlight;
@@ -118,18 +118,18 @@ export function BottomNav() {
                 key={item.id}
                 href={item.href}
                 onClick={() => triggerHaptic('medium')}
-                className="flex flex-col items-center justify-center -mt-5 group min-w-[56px] min-h-[44px]"
+                className="flex flex-col items-center justify-center -mt-6 group min-w-[56px] focus:outline-none"
               >
                 <div
-                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-xl transition-all active:scale-90 ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-transform active:scale-90 ${
                     item.isActive
-                      ? 'bg-black ring-4 ring-emerald-400/40'
+                      ? 'bg-stone-900 ring-4 ring-emerald-500/25'
                       : 'bg-[#059669] hover:bg-[#047857]'
                   }`}
                 >
                   <Icon className="w-6 h-6 stroke-[2.5]" />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-wider text-stone-800 dark:text-stone-200 mt-1">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-stone-800 mt-1">
                   {item.label}
                 </span>
               </Link>
@@ -141,20 +141,20 @@ export function BottomNav() {
               key={item.id}
               href={item.href}
               onClick={() => triggerHaptic('selection')}
-              className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all min-w-[54px] min-h-[44px] ${
+              className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all min-w-[52px] min-h-[44px] focus:outline-none ${
                 item.isActive
-                  ? 'text-[#059669] dark:text-emerald-400 font-bold scale-105'
-                  : 'text-stone-500 dark:text-stone-400 font-medium hover:text-stone-900'
+                  ? 'text-[#059669] font-black scale-105'
+                  : 'text-stone-500 hover:text-stone-800 font-medium'
               }`}
             >
               <div
-                className={`p-1 rounded-xl transition-all ${
-                  item.isActive ? 'bg-emerald-50 dark:bg-emerald-950/60' : ''
+                className={`p-1 rounded-lg transition-colors ${
+                  item.isActive ? 'bg-emerald-50 text-[#059669]' : ''
                 }`}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className={`w-5 h-5 ${item.isActive ? 'stroke-[2.5]' : 'stroke-2'}`} />
               </div>
-              <span className="text-[10px] tracking-wide mt-0.5 font-semibold leading-tight">
+              <span className={`text-[10px] tracking-tight mt-0.5 ${item.isActive ? 'font-black text-[#059669]' : 'font-medium'}`}>
                 {item.label}
               </span>
             </Link>

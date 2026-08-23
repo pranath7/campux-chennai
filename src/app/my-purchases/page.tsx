@@ -70,13 +70,13 @@ export default function MyPurchasesPage() {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8 text-[#121316]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8 text-[#121316]">
       {/* Header */}
-      <div className="space-y-3 sm:space-y-4">
-        <div className="inline-block bg-[#E8E1D5] px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
+      <div className="space-y-2 sm:space-y-4">
+        <div className="inline-block bg-[#E8E1D5] px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
           Student Resource Library
         </div>
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316] leading-tight">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316] break-words leading-tight">
           My Purchases
         </h1>
         <p className="text-stone-600 text-xs sm:text-sm max-w-2xl font-normal leading-relaxed">

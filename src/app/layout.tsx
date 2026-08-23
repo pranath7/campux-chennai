@@ -40,7 +40,7 @@ export default function RootLayout({
         <AuthProvider>
           <MobileGestures>
             <Navbar />
-            <main className="flex-1 flex flex-col pb-20 md:pb-0">
+            <main className="flex-1 flex flex-col pb-28 md:pb-8">
               {children}
             </main>
             <Footer />

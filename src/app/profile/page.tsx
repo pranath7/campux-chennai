@@ -97,26 +97,26 @@ export default function ProfilePage() {
             </p>
 
             {/* Unique Student ID and Phone Badges */}
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5 pt-1">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1 max-w-full">
               <button
                 onClick={handleCopyId}
-                className="bg-stone-100 hover:bg-stone-200 border border-stone-200 px-3 py-1.5 rounded-xl text-xs font-mono font-bold text-stone-900 flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="bg-stone-100 hover:bg-stone-200 border border-stone-200 px-2.5 py-1 rounded-xl text-[11px] font-mono font-bold text-stone-900 flex items-center gap-1.5 transition-colors cursor-pointer max-w-full"
                 title="Click to copy Unique Student ID"
               >
-                <User className="w-3.5 h-3.5 text-emerald-600" />
-                <span>ID: {uniqueStudentId}</span>
-                {copiedId ? <Check className="w-3 h-3 text-[#059669]" /> : <Copy className="w-3 h-3 text-stone-400" />}
+                <User className="w-3 h-3 text-emerald-600 shrink-0" />
+                <span className="truncate">ID: {uniqueStudentId}</span>
+                {copiedId ? <Check className="w-3 h-3 text-[#059669] shrink-0" /> : <Copy className="w-3 h-3 text-stone-400 shrink-0" />}
               </button>
 
-              <div className="bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-xl text-xs font-semibold text-stone-700 flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-stone-500" />
+              <div className="bg-stone-100 border border-stone-200 px-2.5 py-1 rounded-xl text-[11px] font-semibold text-stone-700 flex items-center gap-1.5 shrink-0">
+                <Phone className="w-3 h-3 text-stone-500 shrink-0" />
                 <span>{user.mobile}</span>
               </div>
 
               {user.email && (
-                <div className="bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-xl text-xs font-medium text-stone-600 flex items-center gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-stone-400" />
-                  <span>{user.email}</span>
+                <div className="bg-stone-100 border border-stone-200 px-2.5 py-1 rounded-xl text-[11px] font-medium text-stone-600 flex items-center gap-1.5 max-w-full">
+                  <Mail className="w-3 h-3 text-stone-400 shrink-0" />
+                  <span className="truncate">{user.email}</span>
                 </div>
               )}
             </div>

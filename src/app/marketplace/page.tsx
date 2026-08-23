@@ -96,13 +96,13 @@ function MarketplaceContent() {
   const categories = ['Revision Notes', 'PYQ Solutions', 'Formula Sheet', 'Summary Guide', 'Case Study Notes'];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10 text-[#121316]">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-10 text-[#121316]">
       {/* Header */}
-      <div className="space-y-4">
-        <div className="inline-block bg-[#E8E1D5] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-stone-800">
+      <div className="space-y-2 sm:space-y-4">
+        <div className="inline-block bg-[#E8E1D5] px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-stone-800">
           Peer Academic Vault
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316]">
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#121316] break-words leading-tight">
           Chennai Academic Marketplace
         </h1>
         <p className="text-stone-600 text-xs sm:text-sm max-w-2xl font-normal leading-relaxed">
@@ -111,45 +111,42 @@ function MarketplaceContent() {
       </div>
 
       {/* Main Search & College Quick Filter Bar */}
-      <div className="warm-card rounded-[26px] p-4 sm:p-6 space-y-4">
-        <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Search className="w-4 h-4 text-stone-400 absolute left-4 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by subject, topic (e.g. Financial Accounting, DSA, Law, Macroeconomics)..."
-              className="w-full bg-stone-50 border border-stone-200 rounded-full pl-11 pr-4 py-3 text-xs text-stone-900 focus:outline-hidden focus:border-stone-900 font-medium"
-            />
-          </div>
-
+      <div className="warm-card rounded-[22px] sm:rounded-[26px] p-3.5 sm:p-6 space-y-3 sm:space-y-4 bg-white border border-stone-200">
+        <form onSubmit={handleSearchSubmit} className="flex items-center bg-stone-50 border border-stone-200 rounded-full pl-3.5 pr-1.5 py-1.5 focus-within:border-stone-900 transition-colors">
+          <Search className="w-4 h-4 text-stone-400 shrink-0" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search notes, subjects, topics..."
+            className="flex-1 bg-transparent px-2.5 py-1.5 text-xs text-stone-900 placeholder:text-stone-400 focus:outline-none font-medium min-w-0"
+          />
           <button
             type="submit"
-            className="bg-[#121316] hover:bg-black text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer shadow-xs transition-all"
+            className="bg-[#121316] hover:bg-black text-white px-4 sm:px-6 py-2 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider cursor-pointer transition-all shrink-0"
           >
             Search
           </button>
         </form>
 
         {/* Quick College Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-1 text-xs">
-          <span className="text-[11px] font-bold uppercase text-stone-400 shrink-0">Campus:</span>
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
+          <span className="text-[10px] font-bold uppercase text-stone-400 shrink-0">Campus:</span>
           <button
             onClick={() => setSelectedCollege('')}
-            className={`px-3.5 py-1 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
+            className={`px-3 py-1 rounded-full text-[11px] font-semibold shrink-0 transition-all cursor-pointer ${
               selectedCollege === ''
                 ? 'bg-[#121316] text-white'
                 : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
             }`}
           >
-            All Campuses
+            All
           </button>
           {colleges.map((c) => (
             <button
               key={c.id}
               onClick={() => setSelectedCollege(c.id)}
-              className={`px-3.5 py-1 rounded-full text-xs font-semibold shrink-0 transition-all cursor-pointer ${
+              className={`px-3 py-1 rounded-full text-[11px] font-semibold shrink-0 transition-all cursor-pointer ${
                 selectedCollege === c.id
                   ? 'bg-[#121316] text-white'
                   : 'bg-stone-100 hover:bg-stone-200 text-stone-700'
@@ -162,12 +159,12 @@ function MarketplaceContent() {
       </div>
 
       {/* Mobile Filter Toggle Button */}
-      <div className="lg:hidden flex items-center justify-between gap-3 bg-white p-3.5 rounded-2xl border border-stone-200 shadow-xs">
+      <div className="lg:hidden flex items-center justify-between gap-2 bg-white p-2.5 rounded-2xl border border-stone-200 shadow-xs">
         <button
           onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-          className="flex-1 flex items-center justify-center gap-2 py-2 bg-stone-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 py-2 bg-stone-900 text-white rounded-xl text-xs font-bold uppercase tracking-wider cursor-pointer min-h-[40px]"
         >
-          <Filter className="w-4 h-4" />
+          <Filter className="w-3.5 h-3.5" />
           <span>{mobileFilterOpen ? 'Close Filters' : 'Filter & Sort Notes'}</span>
           {(selectedCategory || selectedYear || selectedCollege) && (
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -176,7 +173,7 @@ function MarketplaceContent() {
         {(selectedCategory || selectedYear || selectedCollege) && (
           <button
             onClick={handleResetFilters}
-            className="px-3.5 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold cursor-pointer"
+            className="px-3 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-xl text-xs font-bold cursor-pointer min-h-[40px]"
           >
             Reset
           </button>
@@ -184,7 +181,7 @@ function MarketplaceContent() {
       </div>
 
       {/* Content Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* Left Filters Sidebar */}
         <div className={`lg:col-span-1 space-y-6 ${mobileFilterOpen ? 'block' : 'hidden lg:block'}`}>
           <div className="warm-card rounded-[24px] p-6 space-y-6 bg-white border border-stone-200">

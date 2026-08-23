@@ -140,20 +140,20 @@ export default function StudentAppHome() {
   const topSellers = Array.from(sellerMap.values()).sort((a, b) => b.sales - a.sales).slice(0, 3);
 
   return (
-    <div className="space-y-14 sm:space-y-16 pb-24 text-[#121316] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="space-y-8 sm:space-y-16 pb-16 sm:pb-24 text-[#121316] max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       {/* 1. STUDENT WELCOME & SEARCH BANNER */}
-      <section className="bg-stone-900 text-white rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 lg:p-12 relative overflow-hidden shadow-2xl">
-        <div className="max-w-4xl space-y-5 sm:space-y-6 relative z-10">
+      <section className="bg-stone-900 text-white rounded-[22px] sm:rounded-[36px] p-4 sm:p-10 lg:p-12 relative overflow-hidden shadow-2xl">
+        <div className="max-w-4xl space-y-4 sm:space-y-6 relative z-10">
           {/* Student Status Tag */}
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="truncate max-w-[280px] sm:max-w-md">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold text-emerald-400 max-w-full">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="truncate">
               {userCollegeName} • {user.profile?.courseName || 'B.Com'} {user.profile?.year ? `(Yr ${user.profile.year}` : ''}
               {user.profile?.section ? `, Sec ${user.profile.section})` : ')'}
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight break-words">
             Welcome back, {user.fullName.split(' ')[0]} 👋
           </h1>
 

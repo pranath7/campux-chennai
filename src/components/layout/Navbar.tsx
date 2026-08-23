@@ -8,14 +8,11 @@ import { BRAND_CONFIG } from '@/lib/brandConfig';
 import {
   GraduationCap,
   Bell,
-  ShoppingBag,
   Building,
   Menu,
   X,
   ArrowUpRight,
-  ShieldCheck,
   LogOut,
-  User as UserIcon,
 } from 'lucide-react';
 
 export function Navbar() {
@@ -58,26 +55,26 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-40 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-stone-200/80 text-[#121316]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <header className="sticky top-0 z-40 bg-[#FAF8F5]/98 backdrop-blur-md border-b border-stone-200/90 text-[#121316]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-20">
           {/* Brand Logo */}
-          <div className="flex items-center gap-6">
-            <Link href={user ? '/app' : '/'} className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-full border border-stone-900 flex items-center justify-center text-stone-900 group-hover:bg-stone-900 group-hover:text-white transition-all">
-                <GraduationCap className="w-4 h-4" />
+          <div className="flex items-center gap-3 sm:gap-6">
+            <Link href={user ? '/app' : '/'} className="flex items-center gap-2 group shrink-0">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-stone-900 flex items-center justify-center text-stone-900 group-hover:bg-stone-900 group-hover:text-white transition-all">
+                <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-sm tracking-widest uppercase text-[#121316]">
+                <span className="font-extrabold text-xs sm:text-sm tracking-widest uppercase text-[#121316]">
                   {BRAND_CONFIG.shortName}
                 </span>
-                <span className="text-[9px] font-bold text-[#059669] tracking-widest uppercase -mt-0.5">
+                <span className="text-[8px] sm:text-[9px] font-bold text-[#059669] tracking-widest uppercase -mt-0.5">
                   Chennai
                 </span>
               </div>
             </Link>
 
-            {/* Active College Badge (Logged In) */}
+            {/* Active College Badge (Logged In - Desktop only) */}
             {user?.profile?.collegeId && (
               <div className="hidden xl:flex items-center gap-1.5 bg-stone-100/80 border border-stone-200 px-3 py-1 rounded-full text-xs text-stone-600 font-medium">
                 <Building className="w-3.5 h-3.5 text-stone-500" />
@@ -89,7 +86,7 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Navigation Links */}
+          {/* Navigation Links (Desktop) */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {(user ? appLinks : publicLinks).map((link) => {
               const isActive = pathname === link.href;
@@ -110,7 +107,7 @@ export function Navbar() {
           </nav>
 
           {/* Right Area */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             {user ? (
               // LOGGED IN USER ACTIONS
               <>
@@ -118,21 +115,27 @@ export function Navbar() {
                 <div className="relative">
                   <button
                     onClick={() => setNotifPopoverOpen(!notifPopoverOpen)}
-                    className="w-10 h-10 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center text-stone-700 hover:text-black transition-all relative cursor-pointer"
+                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-stone-200 hover:border-stone-400 bg-white flex items-center justify-center text-stone-700 hover:text-black transition-all relative cursor-pointer"
                     title="Notifications"
                   >
                     <Bell className="w-4 h-4" />
                     {unreadNotifsCount > 0 && (
-                      <span className="absolute top-2 right-2 w-2 h-2 bg-[#059669] rounded-full ring-2 ring-white" />
+                      <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#059669] rounded-full ring-2 ring-white" />
                     )}
                   </button>
 
                   {notifPopoverOpen && (
-                    <div className="absolute right-0 mt-2 w-80 bg-white border border-stone-200 rounded-2xl shadow-2xl z-50 p-4 text-stone-900 animate-fadeIn">
+                    <div className="fixed sm:absolute top-14 sm:top-auto right-3 sm:right-0 mt-2 w-[calc(100vw-24px)] sm:w-80 bg-white border border-stone-200 rounded-2xl shadow-2xl z-50 p-4 text-stone-900 animate-fadeIn">
                       <div className="flex items-center justify-between pb-3 border-b border-stone-100">
                         <span className="font-bold text-xs uppercase tracking-wider text-stone-500">
                           Notifications
                         </span>
+                        <button
+                          onClick={() => setNotifPopoverOpen(false)}
+                          className="text-stone-400 hover:text-stone-700 text-xs font-bold sm:hidden"
+                        >
+                          ✕
+                        </button>
                       </div>
                       <div className="max-h-64 overflow-y-auto divide-y divide-stone-100 mt-2">
                         {notifications.length === 0 ? (
@@ -151,7 +154,7 @@ export function Navbar() {
                   )}
                 </div>
 
-                {/* Profile */}
+                {/* Profile Avatar */}
                 <Link
                   href="/profile"
                   className="flex items-center gap-2 group"
@@ -160,11 +163,11 @@ export function Navbar() {
                   <img
                     src={user.avatarUrl || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80'}
                     alt={user.fullName}
-                    className="w-9 h-9 rounded-full object-cover border border-stone-300 group-hover:border-stone-900 transition-colors"
+                    className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover border border-stone-300 group-hover:border-stone-900 transition-colors"
                   />
                 </Link>
 
-                {/* Logout Button */}
+                {/* Desktop Logout Button */}
                 <button
                   onClick={handleLogout}
                   className="w-9 h-9 rounded-full border border-stone-200 hover:border-stone-400 bg-white hidden sm:flex items-center justify-center text-stone-600 hover:text-rose-600 transition-colors cursor-pointer"
@@ -177,76 +180,58 @@ export function Navbar() {
               // PUBLIC VISITOR ACTIONS
               <>
                 <Link
-                  href="/login?redirect=/sell"
-                  className="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-black px-3 py-2 transition-colors hidden sm:inline-block"
-                >
-                  Sell Notes
-                </Link>
-
-                <Link
                   href="/login"
-                  className="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-black px-3 py-2 transition-colors"
+                  className="text-xs font-bold uppercase tracking-wider text-stone-700 hover:text-black px-2.5 py-1.5 transition-colors"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/login?redirect=/app"
-                  className="bg-[#059669] hover:bg-[#047857] text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-xs flex items-center gap-1.5"
+                  className="bg-[#059669] hover:bg-[#047857] text-white px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-xs flex items-center gap-1"
                 >
                   <span>Buy Notes</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
+
+                {/* Visitor Mobile Menu */}
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="md:hidden w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center text-stone-800"
+                >
+                  {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                </button>
               </>
             )}
-
-            {/* Mobile Menu Trigger */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden w-10 h-10 rounded-full border border-stone-200 flex items-center justify-center text-stone-800"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-200 bg-[#FAF8F5] px-6 py-5 space-y-4">
-          {(user ? appLinks : publicLinks).map((link) => (
+      {/* Visitor Mobile Dropdown menu */}
+      {mobileMenuOpen && !user && (
+        <div className="md:hidden border-t border-stone-200 bg-[#FAF8F5] px-5 py-4 space-y-3">
+          {publicLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="block text-sm font-bold uppercase tracking-wider text-stone-800 hover:text-black"
+              className="block text-xs font-bold uppercase tracking-wider text-stone-800 hover:text-black py-1"
             >
               {link.name}
             </Link>
           ))}
-          <div className="pt-4 border-t border-stone-200 space-y-2">
-            {user ? (
-              <button
-                onClick={handleLogout}
-                className="w-full bg-stone-200 text-stone-800 py-3 rounded-full font-bold text-xs uppercase tracking-wider text-center block"
-              >
-                Logout
-              </button>
-            ) : (
-              <>
-                <Link
-                  href="/login?redirect=/app"
-                  className="w-full bg-[#059669] text-white py-3 rounded-full font-bold text-xs uppercase tracking-wider text-center block"
-                >
-                  Buy Notes
-                </Link>
-                <Link
-                  href="/login?redirect=/sell"
-                  className="w-full bg-white border border-stone-200 text-stone-800 py-3 rounded-full font-bold text-xs uppercase tracking-wider text-center block"
-                >
-                  Sell Notes
-                </Link>
-              </>
-            )}
+          <div className="pt-3 border-t border-stone-200 flex gap-2">
+            <Link
+              href="/login?redirect=/sell"
+              className="flex-1 bg-white border border-stone-300 text-stone-800 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-center block"
+            >
+              Sell Notes
+            </Link>
+            <Link
+              href="/login?redirect=/app"
+              className="flex-1 bg-[#059669] text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider text-center block"
+            >
+              Buy Notes
+            </Link>
           </div>
         </div>
       )}
