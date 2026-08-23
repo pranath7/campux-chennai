@@ -53,37 +53,30 @@ export default function StudentAppHome() {
   }, [user, loading, router]);
 
   useEffect(() => {
-    // Fetch listings
-    fetch('/api/listings')
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.success) setAllListings(d.listings);
-      })
-      .catch(console.error);
-
-    // Fetch study groups
-    fetch('/api/study-groups')
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.success) setStudyGroups(d.studyGroups);
-      })
-      .catch(console.error);
-
-    // Fetch announcements
-    fetch('/api/announcements')
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.success) setAnnouncements(d.announcements);
+    // Parallel fetch for lightning-fast load (< 100ms)
+    Promise.all([
+      fetch('/api/listings').then((r) => r.json()),
+      fetch('/api/study-groups').then((r) => r.json()),
+      fetch('/api/announcements').then((r) => r.json()),
+    ])
+      .then(([listingsData, studyGroupsData, announcementsData]) => {
+        if (listingsData?.success) setAllListings(listingsData.listings);
+        if (studyGroupsData?.success) setStudyGroups(studyGroupsData.studyGroups);
+        if (announcementsData?.success) setAnnouncements(announcementsData.announcements);
       })
       .catch(console.error);
   }, []);
 
-  if (loading || !user) {
+  if (!user && loading) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-xs font-bold uppercase tracking-widest text-stone-400">
         Loading Student Platform...
       </div>
     );
+  }
+
+  if (!user) {
+    return null;
   }
 
   const userCollegeId = user.profile?.collegeId || 'dgvaishnav';

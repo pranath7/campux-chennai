@@ -17,7 +17,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
-  loading: true,
+  loading: false,
   notifications: [],
   unreadNotifsCount: 0,
   login: async () => false,
@@ -28,21 +28,35 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<(User & { profile?: StudentProfile; college?: College }) | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<(User & { profile?: StudentProfile; college?: College }) | null>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const cached = localStorage.getItem('campux_user_cache');
+        if (cached) return JSON.parse(cached);
+      } catch {}
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
 
   const refreshSession = async () => {
     try {
-      const res = await fetch('/api/auth/me');
+      const res = await fetch('/api/auth/me', { cache: 'no-store' });
       const data = await res.json();
       if (data.authenticated && data.user) {
         setUser(data.user);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('campux_user_cache', JSON.stringify(data.user));
+        }
       } else {
         setUser(null);
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('campux_user_cache');
+        }
       }
     } catch {
-      setUser(null);
+      // Keep cached user if offline
     } finally {
       setLoading(false);
     }
@@ -62,6 +76,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json();
       if (data.success && data.user) {
         setUser(data.user);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('campux_user_cache', JSON.stringify(data.user));
+        }
         return true;
       }
       return false;
@@ -80,6 +97,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const data = await res.json();
       if (data.success && data.user) {
         setUser(data.user);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('campux_user_cache', JSON.stringify(data.user));
+        }
         return true;
       }
       return false;
@@ -92,6 +112,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await fetch('/api/auth/logout', { method: 'POST' });
       setUser(null);
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('campux_user_cache');
+      }
     } catch (e) {
       console.error(e);
     }

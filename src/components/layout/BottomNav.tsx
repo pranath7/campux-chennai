@@ -117,6 +117,7 @@ export function BottomNav() {
               <Link
                 key={item.id}
                 href={item.href}
+                prefetch={true}
                 onClick={() => triggerHaptic('medium')}
                 className="flex flex-col items-center justify-center -mt-6 group min-w-[56px] focus:outline-none"
               >
@@ -140,6 +141,7 @@ export function BottomNav() {
             <Link
               key={item.id}
               href={item.href}
+              prefetch={true}
               onClick={() => triggerHaptic('selection')}
               className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all min-w-[52px] min-h-[44px] focus:outline-none ${
                 item.isActive
