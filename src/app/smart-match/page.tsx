@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Compass, Sparkles, Building, ArrowUpRight, BookOpen, Search } from 'lucide-react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { Compass, Sparkles, Building, ArrowUpRight, BookOpen, Search, Loader2 } from 'lucide-react';
 import { ResourceCard } from '@/components/marketplace/ResourceCard';
 import { PreviewModal } from '@/components/marketplace/PreviewModal';
 import { CheckoutModal } from '@/components/marketplace/CheckoutModal';
@@ -10,7 +10,7 @@ import { Listing } from '@/types/marketplace';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 
-export default function SmartMatchPage() {
+function SmartMatchContent() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const [colleges, setColleges] = useState<any[]>([]);
@@ -208,5 +208,20 @@ export default function SmartMatchPage() {
         />
       )}
     </div>
+  );
+}
+
+export default function SmartMatchPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3 text-stone-500">
+          <Loader2 className="w-8 h-8 animate-spin text-emerald-600" />
+          <p className="text-xs font-semibold uppercase tracking-wider">Loading Smart Match Engine...</p>
+        </div>
+      }
+    >
+      <SmartMatchContent />
+    </Suspense>
   );
 }
