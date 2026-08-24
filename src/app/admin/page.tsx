@@ -751,186 +751,6 @@ export default function AdminPortalPage() {
                 </div>
               </div>
 
-              {/* REVIEW PAYMENT MODAL */}
-              {selectedPayment && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-                  <div className="bg-[#161D2F] border border-stone-800 rounded-3xl max-w-2xl w-full shadow-2xl max-h-[92vh] flex flex-col overflow-hidden">
-                    {/* Header */}
-                    <div className="flex items-center justify-between border-b border-stone-800 p-5 sm:p-6 pb-4 bg-[#161D2F] shrink-0">
-                      <div>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
-                          Payment Verification Review
-                        </span>
-                        <h3 className="text-lg font-black text-white">Order {selectedPayment.purchaseId}</h3>
-                      </div>
-                      <button
-                        onClick={() => setSelectedPayment(null)}
-                        className="w-8 h-8 rounded-full bg-[#0F1422] text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-                      >
-                        ✕
-                      </button>
-                    </div>
-
-                    {/* Scrollable Body */}
-                    <div className="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1">
-                      {/* Buyer & Resource Overview */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                        <div className="bg-[#0F1422] p-4 rounded-2xl border border-stone-800/80 space-y-1.5">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block">Buyer Student</span>
-                          <span className="font-bold text-white text-sm block">{selectedPayment.buyerName}</span>
-                          <p className="text-stone-400">Mobile: {selectedPayment.buyerMobile}</p>
-                          <p className="text-stone-400">College: {selectedPayment.buyerCollegeId}</p>
-                        </div>
-
-                        <div className="bg-[#0F1422] p-4 rounded-2xl border border-stone-800/80 space-y-1.5">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block">Resource & Price</span>
-                          <span className="font-bold text-white text-sm block truncate">{selectedPayment.listingTitle}</span>
-                          <p className="text-emerald-400 font-bold">Total Amount Paid: ₹{selectedPayment.amount}</p>
-                          <p className="text-stone-400 font-mono">UTR Reference: {selectedPayment.utrId}</p>
-                        </div>
-                      </div>
-
-                      {/* Screenshot Viewer */}
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">
-                            Payment Screenshot Proof
-                          </span>
-                          <span className="text-[10px] text-stone-500">UTR: {selectedPayment.utrId}</span>
-                        </div>
-                        <div className="bg-[#0F1422] p-3 rounded-2xl border border-stone-800 flex justify-center max-h-96 overflow-hidden">
-                          <img
-                            src={selectedPayment.screenshotUrl}
-                            alt="Student UPI Screenshot"
-                            className="max-h-88 object-contain rounded-xl shadow-md"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Fixed Footer with Actions */}
-                    <div className="flex items-center justify-end gap-3 p-5 sm:p-6 pt-4 border-t border-stone-800 bg-[#121726] shrink-0">
-                      <button
-                        type="button"
-                        onClick={() => setShowRejectModal(true)}
-                        className="px-5 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-xl font-bold text-xs transition-colors cursor-pointer"
-                      >
-                        Reject Payment
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setShowApproveModal(true)}
-                        className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
-                      >
-                        <CheckCircle2 className="w-4 h-4" />
-                        <span>Approve Payment</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* APPROVE CONFIRMATION DIALOG */}
-              {showApproveModal && selectedPayment && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-                  <div className="bg-[#161D2F] border border-emerald-500/40 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-center">
-                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
-                      <CheckCircle2 className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-base font-black text-white">Approve Payment Verification?</h3>
-                    <p className="text-xs text-stone-300 leading-relaxed">
-                      Are you sure you want to approve this payment of <strong>₹{selectedPayment.amount}</strong> for{' '}
-                      <strong>{selectedPayment.buyerName}</strong>? The notes will be permanently unlocked for download and platform revenue updated.
-                    </p>
-                    <div className="flex items-center justify-center gap-3 pt-2">
-                      <button
-                        onClick={() => setShowApproveModal(false)}
-                        className="px-4 py-2 bg-[#0F1422] text-stone-400 hover:text-white rounded-xl text-xs font-bold"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={async () => {
-                          const ok = await handleAction('APPROVE_PAYMENT', selectedPayment.id);
-                          if (ok) {
-                            setShowApproveModal(false);
-                            setSelectedPayment(null);
-                          }
-                        }}
-                        className="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs shadow-lg"
-                      >
-                        Confirm & Unlock
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* REJECT MODAL WITH REASON SELECTION */}
-              {showRejectModal && selectedPayment && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-                  <div className="bg-[#161D2F] border border-rose-500/40 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl">
-                    <h3 className="text-base font-black text-white">Select Payment Rejection Reason</h3>
-                    <p className="text-xs text-stone-400">
-                      The student will receive an immediate notification with this reason so they can rectify and resubmit.
-                    </p>
-
-                    <div className="space-y-2">
-                      {[
-                        'Invalid UTR',
-                        'Payment not received',
-                        'Wrong amount',
-                        'Duplicate UTR',
-                        'Screenshot unclear',
-                        'Incorrect payment',
-                        'Other',
-                      ].map((opt) => (
-                        <label
-                          key={opt}
-                          onClick={() => setRejectReason(opt)}
-                          className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
-                            rejectReason === opt
-                              ? 'bg-rose-500/20 border-rose-500 text-rose-200 font-bold'
-                              : 'bg-[#0F1422] border-stone-800 text-stone-400 hover:border-stone-700'
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="rejectReason"
-                            checked={rejectReason === opt}
-                            onChange={() => setRejectReason(opt)}
-                            className="hidden"
-                          />
-                          <div className={`w-3.5 h-3.5 rounded-full border ${rejectReason === opt ? 'bg-rose-500 border-rose-400' : 'border-stone-600'}`} />
-                          <span>{opt}</span>
-                        </label>
-                      ))}
-                    </div>
-
-                    <div className="flex items-center justify-end gap-2 pt-2">
-                      <button
-                        onClick={() => setShowRejectModal(false)}
-                        className="px-4 py-2 bg-[#0F1422] text-stone-400 hover:text-white rounded-xl text-xs font-bold"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={async () => {
-                          const ok = await handleAction('REJECT_PAYMENT', selectedPayment.id, { reason: rejectReason });
-                          if (ok) {
-                            setShowRejectModal(false);
-                            setSelectedPayment(null);
-                          }
-                        }}
-                        className="px-5 py-2 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-xl text-xs shadow-lg"
-                      >
-                        Confirm Rejection
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           )}
 
@@ -2612,6 +2432,191 @@ export default function AdminPortalPage() {
           )}
         </main>
       </div>
+
+      {/* ========================================================================= */}
+      {/* ROOT-LEVEL MODALS (z-[9999] - NEVER CLIPPED BY PARENT HEADERS/MAINS) */}
+      {/* ========================================================================= */}
+
+      {/* 1. REVIEW PAYMENT MODAL */}
+      {selectedPayment && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md animate-fadeIn overflow-y-auto">
+          <div className="bg-[#161D2F] border border-stone-800 rounded-3xl max-w-2xl w-full shadow-2xl max-h-[90vh] my-auto flex flex-col overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-stone-800 p-5 sm:p-6 pb-4 bg-[#161D2F] shrink-0">
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">
+                  Payment Verification Review
+                </span>
+                <h3 className="text-lg font-black text-white">Order {selectedPayment.purchaseId}</h3>
+              </div>
+              <button
+                onClick={() => setSelectedPayment(null)}
+                className="w-8 h-8 rounded-full bg-[#0F1422] text-stone-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Scrollable Body */}
+            <div className="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1">
+              {/* Buyer & Resource Overview */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div className="bg-[#0F1422] p-4 rounded-2xl border border-stone-800/80 space-y-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block">Buyer Student</span>
+                  <span className="font-bold text-white text-sm block">{selectedPayment.buyerName}</span>
+                  <p className="text-stone-400">Mobile: {selectedPayment.buyerMobile}</p>
+                  <p className="text-stone-400">College: {selectedPayment.buyerCollegeId}</p>
+                </div>
+
+                <div className="bg-[#0F1422] p-4 rounded-2xl border border-stone-800/80 space-y-1.5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-500 block">Resource & Price</span>
+                  <span className="font-bold text-white text-sm block truncate">{selectedPayment.listingTitle}</span>
+                  <p className="text-emerald-400 font-bold">Total Amount Paid: ₹{selectedPayment.amount}</p>
+                  <p className="text-stone-400 font-mono">UTR Reference: {selectedPayment.utrId}</p>
+                </div>
+              </div>
+
+              {/* Screenshot Viewer */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 block">
+                    Payment Screenshot Proof
+                  </span>
+                  <span className="text-[10px] text-stone-500">UTR: {selectedPayment.utrId}</span>
+                </div>
+                <div className="bg-[#0F1422] p-3 rounded-2xl border border-stone-800 flex justify-center max-h-96 overflow-hidden">
+                  <img
+                    src={selectedPayment.screenshotUrl}
+                    alt="Student UPI Screenshot"
+                    className="max-h-88 object-contain rounded-xl shadow-md"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Fixed Footer with Actions */}
+            <div className="flex items-center justify-end gap-3 p-5 sm:p-6 pt-4 border-t border-stone-800 bg-[#121726] shrink-0">
+              <button
+                type="button"
+                onClick={() => setShowRejectModal(true)}
+                className="px-5 py-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-xl font-bold text-xs transition-colors cursor-pointer"
+              >
+                Reject Payment
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowApproveModal(true)}
+                className="px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Approve Payment</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. APPROVE CONFIRMATION DIALOG */}
+      {showApproveModal && selectedPayment && (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="bg-[#161D2F] border border-emerald-500/40 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-center my-auto">
+            <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mx-auto flex items-center justify-center">
+              <CheckCircle2 className="w-6 h-6" />
+            </div>
+            <h3 className="text-base font-black text-white">Approve Payment Verification?</h3>
+            <p className="text-xs text-stone-300 leading-relaxed">
+              Are you sure you want to approve this payment of <strong>₹{selectedPayment.amount}</strong> for{' '}
+              <strong>{selectedPayment.buyerName}</strong>? The notes will be permanently unlocked for download and platform revenue updated.
+            </p>
+            <div className="flex items-center justify-center gap-3 pt-2">
+              <button
+                onClick={() => setShowApproveModal(false)}
+                className="px-4 py-2 bg-[#0F1422] text-stone-400 hover:text-white rounded-xl text-xs font-bold cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={async () => {
+                  const ok = await handleAction('APPROVE_PAYMENT', selectedPayment.id);
+                  if (ok) {
+                    setShowApproveModal(false);
+                    setSelectedPayment(null);
+                  }
+                }}
+                className="px-5 py-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl text-xs shadow-lg cursor-pointer"
+              >
+                Confirm & Unlock
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 3. REJECT MODAL WITH REASON SELECTION */}
+      {showRejectModal && selectedPayment && (
+        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="bg-[#161D2F] border border-rose-500/40 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl my-auto">
+            <h3 className="text-base font-black text-white">Select Payment Rejection Reason</h3>
+            <p className="text-xs text-stone-400">
+              The student will receive an immediate notification with this reason so they can rectify and resubmit.
+            </p>
+
+            <div className="space-y-2">
+              {[
+                'Invalid UTR',
+                'Payment not received',
+                'Wrong amount',
+                'Duplicate UTR',
+                'Screenshot unclear',
+                'Incorrect payment',
+                'Other',
+              ].map((opt) => (
+                <label
+                  key={opt}
+                  onClick={() => setRejectReason(opt)}
+                  className={`flex items-center gap-2.5 p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
+                    rejectReason === opt
+                      ? 'bg-rose-500/20 border-rose-500 text-rose-200 font-bold'
+                      : 'bg-[#0F1422] border-stone-800 text-stone-400 hover:border-stone-700'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="rejectReason"
+                    checked={rejectReason === opt}
+                    onChange={() => setRejectReason(opt)}
+                    className="hidden"
+                  />
+                  <div className={`w-3.5 h-3.5 rounded-full border ${rejectReason === opt ? 'bg-rose-500 border-rose-400' : 'border-stone-600'}`} />
+                  <span>{opt}</span>
+                </label>
+              ))}
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-2">
+              <button
+                onClick={() => setShowRejectModal(false)}
+                className="px-4 py-2 bg-[#0F1422] text-stone-400 hover:text-white rounded-xl text-xs font-bold cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={async () => {
+                  const ok = await handleAction('REJECT_PAYMENT', selectedPayment.id, { reason: rejectReason });
+                  if (ok) {
+                    setShowRejectModal(false);
+                    setSelectedPayment(null);
+                  }
+                }}
+                className="px-5 py-2 bg-rose-500 hover:bg-rose-400 text-white font-bold rounded-xl text-xs shadow-lg cursor-pointer"
+              >
+                Confirm Rejection
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
